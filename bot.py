@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-__version__ = '2.5.1'
+__version__ = '2.5.2'
 
 import asyncio
 import textwrap
@@ -203,6 +203,8 @@ class ModmailBot(commands.Bot):
             print(Fore.RED + Style.BRIGHT + 'WARNING - The GUILD_ID provided does not exist!' + Style.RESET_ALL)
         else:
             await self.threads.populate_cache()
+        
+        await self.config.wait_until_ready() # Wait until config cache is popluated with stuff from db
 
         closures = self.config.closures.copy()
 
